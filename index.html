@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            padding-top: 60px;
+            position: relative;
+        }
+        canvas {
+            border: 2px solid black;
+            display: none; /* Hide the game initially */
+        }
+        .start-button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 20px;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            position: absolute;
+        }
+        .start-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+   
+
+    <div class="game-container">
+        <!-- Start Button -->
+        <button id="startGame" class="start-button">Start Game</button>
+
+        <!-- Game Canvas -->
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="E:\game file\Mingle_Game_Song_Round_and_Round_Squid_Game_2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script src="script.js"></script>
+
+    <script>
+        // Elements
+        const startButton = document.getElementById("startGame");
+        const gameCanvas = document.getElementById("gameCanvas");
+        const bgMusic = document.getElementById("bgMusic");
+    
+        let gameRunning = false; // Track game state
+    
+        // Start game when button is clicked
+        startButton.addEventListener("click", function() {
+            startButton.style.display = "none"; // Hide start button
+            gameCanvas.style.display = "block"; // Show game canvas
+            gameRunning = true; // Game is now running
+    
+            // Try to play music
+            bgMusic.play().catch(error => {
+                console.log("Autoplay blocked: User interaction required", error);
+            });
+    
+            startGame(); // Call the game start function
+        });
+    
+        function startGame() {
+            console.log("Game Started!"); 
+            // Your game logic will go here.
+            
+            // Simulate game over after 5 seconds (for testing)
+            setTimeout(stopGame, 50000);
+        }
+    
+ 
+
+// Ensure this function exists in script.js
+function stopGame() {
+    if (gameRunning) {
+        console.log("Stopping Game...");
+        bgMusic.pause();  // Stop the music
+        bgMusic.currentTime = 0; // Reset the audio
+        gameRunning = false; // Mark game as stopped
+    }
+}
+    </script>
+    
+</body>
+</html>
